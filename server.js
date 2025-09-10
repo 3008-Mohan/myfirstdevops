@@ -1,18 +1,22 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Serve static files from "public"
+app.use(express.static("public"));
 
+// Routes
 app.get("/", (req, res) => {
-  res.send("Hello from Azure DevOps Project 🚀");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.get("/about", (req, res) => {
-  res.send("This is the About Page 💡 running on Azure!");
+  res.sendFile(path.join(__dirname, "public", "about.html"));
 });
 
 app.get("/contact", (req, res) => {
-  res.send("Contact us at support@myfirstdevops.com 📧");
+  res.sendFile(path.join(__dirname, "public", "contact.html"));
 });
 
 app.listen(PORT, () => {
